@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: gateway
+    runtime: docker
+    dockerfilePath: Dockerfile
+    plan: starter
+    healthCheckPath: /api/ping
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TRUST_PROXY
+        value: "true"
+    disk:
+      name: gateway-data
+      mountPath: /app/server/data
+      sizeGB: 1
